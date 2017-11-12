@@ -10,15 +10,20 @@ import (
 	"time"
 )
 
+//Struct that holds the resonse array of strings
+type Response struct {
+	text []string
+}
+
 func elizaResponse(input string) string {
 
 	// Create Resposne array filled with strings that rep responses
+
 	responses := []string{"I'm not sure what you're trying to say. Could you explain it to me?", "How does that make you feel", "Why do you say that?"}
 	//random num generator
 	rand.Seed(time.Now().UTC().UnixNano())
 	//Radnomly pick a response from the response array
 	random := (rand.Intn(3))
-	fmt.Println(random)
 	//return a random response
 	output := (responses[random])
 	return output
@@ -37,10 +42,33 @@ func main() {
 	for i := range inputs {
 		//get  user input from sample inpout array
 		userinput := inputs[i]
+		//Print user inout from sample input array
+		fmt.Println(inputs[i])
 		// Generate and print Eliza's response.
 		output := elizaResponse(userinput)
-		fmt.Println(output)    //print output of elizaresponse
-		fmt.Println(userinput) //Print from sample input array
+		fmt.Println(output)
 
 	}
+	/*for user input
+	// Keep reading user input and printing Eliza's response until the user types 'quit'.	for reader := bufio.NewReader(os.Stdin); ; {
+	for reader := bufio.NewReader(os.Stdin); ; {
+		// Print user prompt.
+		fmt.Print("> ")
+		// Read user input.
+		userinput, _ := reader.ReadString('\n')
+		// Trim the user input's end of line characters.
+		userinput = strings.Trim(userinput, "\r\n")
+
+		// Generate and print Eliza's response.
+		//output := elizaResponse(userinput)
+		fmt.Println(elizaResponse(userinput))
+		//fmt.Println(eliza.analyse(userinput))
+
+		// If the user input was quit, then quit.
+		// Note that Eliza gets to respond to quit before this happens.
+		if strings.Compare(strings.ToLower(strings.TrimSpace(userinput)), "quit") == 0 {
+			break
+		}
+	}
+	*/
 }
