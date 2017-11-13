@@ -4,6 +4,7 @@
 //Return the string "How do you know you are _?", replacing the underscore with the captured part of the input.
 //Add, along with the five previous test inputs, the following test inputs.
 //Resources:https://golang.org/pkg/regexp/
+//http://blog.kamilkisiel.net/blog/2012/07/05/using-the-go-regexp-package/
 //https://stackoverflow.com/questions/30957615/regex-to-match-variations-of-i-am-im-im-iam-i-am
 
 package main
@@ -22,20 +23,21 @@ var responses = []string{"I'm not sure what you're trying to say. Could you expl
 	"Why do you say that?"}
 
 func elizaResponse(input string) string {
+	input = "i'm happy"
 	//Regular expression to match on "father"
-	//return father response
-	reg := regexp.MustCompile("(?i)\\bfather\\b")
-	if reg.MatchString(input) {
+	regFather := regexp.MustCompile("(?i)\\bfather\\b")
+	if regFather.MatchString(input) {
 		return "Why don’t you tell me more about your father?"
 	}
-	//reg expression to check for "I am"
-	regIam := regexp.MustCompile("(?i)i am (.*)")
-
+	//reg expression to check for "I am and variants e.g I'm "
+	regIam := regexp.MustCompile(`\b(?i)I'?\s*a?m(.*)`)
 	feeling := regIam.FindStringSubmatch(input)
+	//return everything after the regEx match
 	if len(feeling) > 1 {
-		response := "How do you know you are %s?"
+		response := "How do you know you are%s?"
 		return fmt.Sprintf(response, feeling[len(feeling)-1])
 	} else {
+		//no match will return a random response
 		//random num generator
 		rand.Seed(time.Now().UTC().UnixNano())
 		//Radnomly pick a response from the response array
