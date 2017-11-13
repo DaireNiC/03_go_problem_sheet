@@ -27,17 +27,13 @@ func elizaResponse(input string) string {
 	if reg.MatchString(input) {
 		return "Why don’t you tell me more about your father?"
 	}
-
 	//reg expression to check for "I am"
-	regIam := regexp.MustCompile("(?i)\\bI am\\b")
+	regIam := regexp.MustCompile("(?i)i am (.*)")
 
-	if regIam.MatchString(input) {
-		return "How do you know you are ?"
-	}
-
-	// if the input string contains the word 'father' return the specific string
-	if reg.MatchString(input) {
-		return "Why don’t you tell me more about your father?"
+	feeling := regIam.FindStringSubmatch(input)
+	if len(feeling) > 1 {
+		response := "How do you know you are %s?"
+		return fmt.Sprintf(response, feeling[len(feeling)-1])
 	} else {
 		//random num generator
 		rand.Seed(time.Now().UTC().UnixNano())
@@ -46,6 +42,7 @@ func elizaResponse(input string) string {
 		//return a random response
 		return (responses[random])
 	}
+
 }
 func main() {
 
@@ -56,7 +53,11 @@ func main() {
 		"Father was a teacher.",
 		"I am my father's favourite.",
 		"I'm looking forward to the weekend.",
-		"My grandfather was French!"}
+		"My grandfather was French!",
+		"I am happy.",
+		"I am not happy with your responses.",
+		"I am not sure that you understand the effect that your questions are having on me.",
+		"I am supposed to just take what you're saying at face value"}
 
 	for i := range inputs {
 		//get  user input from sample inpout array
