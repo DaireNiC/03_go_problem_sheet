@@ -56,7 +56,7 @@ func main() {
 		"I am happy.",
 		"I am not happy with your responses.",
 		"I am not sure that you understand the effect that your questions are having on me.",
-		"I am supposed to just take what you're saying at face value"}
+		"I am supposed to just take what you're saying at face value"z}
 	//test each input
 	for i := range inputs {
 		//get  user input from sample inpout array

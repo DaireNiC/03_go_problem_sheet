@@ -30,11 +30,25 @@ var substitutions = map[string]string{
 
 func elizaResponse(input string) string {
 
-	//input = "i'm happy and I know it"
 	//Regular expression to match on "father"
-	regFather := regexp.MustCompile("(?i)\\bfather\\b")
-	if regFather.MatchString(input) {
+	reg := regexp.MustCompile("(?i)\\bfather\\b")
+	if reg.MatchString(input) {
 		return "Why don’t you tell me more about your father?"
+	}
+	// match on anger/angry
+	reg = regexp.MustCompile("(?i)\\b(anger|angry)\\b")
+	if reg.MatchString(input) {
+		return "Where you think that anger stems from?"
+	}
+	//match on lonely\loneliness
+	reg = regexp.MustCompile("(?i)\\blonel(.*)\\b")
+	if reg.MatchString(input) {
+		return "You can talk to me. I'm hear to listen"
+	}
+	//match on childhood/family/
+	reg = regexp.MustCompile("(?i)\\b(too)\\b")
+	if reg.MatchString(input) {
+		return "That sounds a little overwhelming, try take a step back and think about where that comes from"
 	}
 	//reg expression to check for "I am and variants e.g I'm "
 	regIam := regexp.MustCompile(`\b(?i)I'?\s*a?m(.*)`)
@@ -77,7 +91,10 @@ func main() {
 		"I am happy.",
 		"I am not happy with your responses.",
 		"I am not sure that you understand the effect that your questions are having on me.",
-		"I am supposed to just take what you're saying at face value"}
+		"I am supposed to just take what you're saying at face value",
+		"I'm so angry all the time",
+		"The loneliness is getting to me",
+		"It's just too much right now"}
 	//test each input
 	for i := range inputs {
 		//get  user input from sample inpout array
