@@ -14,16 +14,16 @@ git clone https://github.com/DaireNiC/03_go_problem_sheet.git
 ## Navigate to the folder
 
 ```bash
-cd 02_go_problem_sheet
+cd 03_go_problem_sheet
 ```
 ## Build and the web app:
 
 ```go
-go build ./complete_guessing_game.go
+go build ./example.go
 ```
 
 ## Run the exe:
 
 ```bash
-./complete_guessing_game.go
+./example.go
 ```
