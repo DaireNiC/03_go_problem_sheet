@@ -1,5 +1,5 @@
 //Author : Daire Ni Chathain
-//Go exercise 5 :Adapt the function to reflect the pronouns in the captured groups, where necessary
+//Go exercise 6 :Adapt the function to reflect the pronouns in the captured groups, where necessary
 //Resources:https://golang.org/pkg/regexp/
 //http://blog.kamilkisiel.net/blog/2012/07/05/using-the-go-regexp-package/
 //https://stackoverflow.com/questions/30957615/regex-to-match-variations-of-i-am-im-im-iam-i-am
@@ -45,7 +45,7 @@ func elizaResponse(input string) string {
 	if reg.MatchString(input) {
 		return "You can talk to me. I'm hear to listen"
 	}
-	//match on childhood/family/
+	//match on "too"
 	reg = regexp.MustCompile("(?i)\\b(too)\\b")
 	if reg.MatchString(input) {
 		return "That sounds a little overwhelming, try take a step back and think about where that comes from"
