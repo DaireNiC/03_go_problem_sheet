@@ -70,9 +70,6 @@ func elizaResponse(input string) string {
 		response := "How do you know you are%s?"
 		return fmt.Sprintf(response, feeling[len(feeling)-1])
 	} else {
-		//no match will return a random response
-		//random num generator
-		rand.Seed(time.Now().UTC().UnixNano())
 		//Radnomly pick a response from the response array
 		random := (rand.Intn(3))
 		//return a random response
@@ -82,6 +79,9 @@ func elizaResponse(input string) string {
 }
 func main() {
 
+	//no match will return a random response
+	//random num generator
+	rand.Seed(time.Now().UTC().UnixNano())
 	//test inputs provided
 	inputs := []string{"People say I look like both my mother and father",
 		"Father was a teacher.",
